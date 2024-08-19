@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # README
 
 ## Table of Contents
@@ -29,11 +23,16 @@ editor_options:
 5.  [File Descriptions](#5-file-descriptions)
 6.  [Contributors/Team](#6-contributorsteam)
 
-***\*Disclaimer:** There are multiple files for some of the problems
+***\*Disclaimer: There are multiple files for some of the problems
 because we as a team could not collectively figure out how to add in our
 pictures and graphs in only one .md file due to lack of github
 expertise, so several problems have graphs/insights uploaded separately
-or have .pdf files as well to show pictures and code.*
+or have .pdf files as well to show pictures and code.***
+
+***\*Disclaimer: This README file contains brief summaries of our
+solutions. Please follow the paths to our full solutions. By clicking on
+the blue highlighted names below, a direct link will be given to ensure
+you can find where our files are.***
 
 ## 1. Introduction
 
@@ -64,7 +63,7 @@ explore our repository for a thorough analysis and valuable insights.
 
 ## 3. Overview
 
-### $$Probability practice$$ {#probability-practice}
+### [Probability practice](https://github.com/SarahADominguez/STA380-DSSM/blob/main/ML---Probability.md)
 
 **Description:** - In our analysis, we utilized the Rule of Total
 Probability to determine the proportion of truthful respondents
@@ -77,7 +76,7 @@ sensitivity and the prevalence of the disease (Part B).
 clickers answered yes is 71.43%. The probability of someone having
 disease given that they tested positive is 19.89%
 
-### $$Wrangling the Billboard Top 100$$ {#wrangling-the-billboard-top-100}
+### [Wrangling the Billboard Top 100](https://github.com/SarahADominguez/STA380-DSSM/tree/main/ML---Data-Wrangling-Billboard)
 
 **Description**
 
@@ -108,7 +107,7 @@ Artists with Ten-Week Hits: A bar plot showcased artists like Elton John
 and Madonna who have had notable ten-week hits, with Elton John topping
 the list.
 
-### $$Visual story telling part 1: green buildings$$ {#visual-story-telling-part-1-green-buildings}
+### [Visual story telling part 1: green buildings](https://github.com/SarahADominguez/STA380-DSSM/blob/main/ML---Visual%20story%20telling%20part%201%20green%20buildings.ipynb)
 
 **Description**
 
@@ -122,17 +121,15 @@ green-certified and non-green buildings.
 
 **Results**
 
--   **Median Rent for Green Buildings:** \$27.60 per square foot per
+-   **Median Rent for Green Buildings:** $27.60 per square foot per year
+
+-   **Median Rent for Non-Green Buildings:** $25.00 per square foot per
     year
 
--   **Median Rent for Non-Green Buildings:** \$25.00 per square foot per
-    year
-
--   **Rent Premium for Green Buildings:** \$2.60 per square foot per
-    year
+-   **Rent Premium for Green Buildings:** $2.60 per square foot per year
 
 The results indicate that green-certified buildings command a rent
-premium of \$2.60 per square foot per year compared to non-green
+premium of $2.60 per square foot per year compared to non-green
 buildings.
 
 **Conclusion**
@@ -143,7 +140,7 @@ are willing to pay more for properties with green certifications, likely
 due to benefits such as energy efficiency, sustainability, and possibly
 better work environments.
 
-### $$Visual story telling part 2: Capital Metro data$$ {#visual-story-telling-part-2-capital-metro-data}
+### [Visual story telling part 2: Capital Metro data](https://github.com/SarahADominguez/STA380-DSSM/tree/main/ML---Visual-Story-Telling-Part-2---Cap-Metro)
 
 **Description**
 
@@ -192,7 +189,7 @@ other. On weekends, ridership is lower and more stable throughout the
 day. This graph can inform bus scheduling to better match passenger
 demand, especially during peak hours on weekdays.
 
-### $$Clustering and dimensionality reduction$$ {#clustering-and-dimensionality-reduction}
+### [Clustering and dimensionality reduction](https://github.com/SarahADominguez/STA380-DSSM/tree/main/ML---Clustering%20and%20dimensionality%20reduction)
 
 **Description**
 
@@ -251,7 +248,7 @@ The findings suggest that chemical properties are strong indicators of
 wine color, with more nuanced patterns emerging for quality, reflecting
 its subjective nature
 
-### $$Market segmentation$$ {#market-segmentation}
+### [Market segmentation](https://github.com/SarahADominguez/STA380-DSSM/blob/main/ML---Market%20segmentation.ipynb)
 
 **Description**
 
@@ -298,7 +295,7 @@ NutrientH20 to tailor its marketing strategies, enabling the brand to
 better connect with its diverse audience and drive growth in specific
 demographics.
 
-### $$The Reuters Corpus$$ {#the-reuters-corpus}
+### [The Reuters Corpus](https://github.com/SarahADominguez/STA380-DSSM/blob/main/Prob_(7)_The_Reuters_Corpus_.ipynb)
 
 **Description:**
 
@@ -344,7 +341,7 @@ cluster) and messed around with the t value (how to cut the dendrogram
 for each cluster) I ran into an issue. When I started out with a small
 amount of clusters, say at t=6 I could create 8 clusters, BUT one
 cluster contained 1600 documents! This was way more compared to the 100
-or so each other contained, which told me we didn't have enough clusters
+or so each other contained, which told me we didn’t have enough clusters
 to accurately classify the data. Finally, I got to a t=3 value, which
 produced 66 well distributed clusters (biggest was only 240)
 
@@ -375,7 +372,7 @@ only two. Each cluster was intresting. He appeared in cluster 50, which
 is second largest cluster with 189 documents and in another cluster
 which contained 5 other authors and 50 documents. Cluster 51 and 50 (two
 largest clusters) I consider to be clusters that are more general, and
-capture documents of which there really wasn't a big pattern too, so for
+capture documents of which there really wasn’t a big pattern too, so for
 Matthew Bunce, it may be best to only look at his other cluster, cluster
 62.
 
@@ -391,14 +388,14 @@ individually, we can find common themes within them, as well as by using
 command f, find common themes across a variety of clusters.
 
 **Cluster 1:** Included words like China, British, and the word
-handover. The inclusion of the word 'handover' to me sounds like it may
+handover. The inclusion of the word ‘handover’ to me sounds like it may
 have to do with the British handover of Hong Kong to China after WW2!
 
 **Cluster 2:** Also includes, China, however this time it includes words
 like legislature, democracy, committie, and provisonal. This to me seems
 like it clusters documents regarding Chinese law and legislature.
 
-**Cluster 7:** Included words like 'gm' (General Motors), workers, UAW,
+**Cluster 7:** Included words like ‘gm’ (General Motors), workers, UAW,
 Strike, Plants, and Union. This clearly indicates that cluster 7
 includes documents about the UAW strike against General Motors.
 
@@ -452,9 +449,9 @@ more that can be learned from this clustering
 
 I also included the final dendrogram used, with the 66 clusters. Can be
 found in **Reuters Corpis Ipynb.** The x axis contains the number of
-documents, and the y represents the distance's.
+documents, and the y represents the distance’s.
 
-### $$Association rule mining$$ {#association-rule-mining}
+### [Association rule mining](https://github.com/SarahADominguez/STA380-DSSM/tree/main/ML---Association%20Rule%20Mining)
 
 **Description**
 
@@ -489,11 +486,11 @@ item.
 
 The other rules included:
 
-yogurt --\> whole milk
+yogurt –\> whole milk
 
-other vegetables --\> whole milk
+other vegetables –\> whole milk
 
-rolls/buns --\> whole milk
+rolls/buns –\> whole milk
 
 and the opposites of these as well! Notice that these are the top 3
 items that appeared across all baskets, and their lifts stay between 1.2
@@ -514,7 +511,7 @@ rules. This is interesting, as it represents the probability of the
 right-hand side showing up based on what is in the left-hand side.
 However, we may run into an issue. If something is very common like
 milk, there is a chance that most products will have a high confidence
-when milk is on the right side! This doesn't necessarily indicate a
+when milk is on the right side! This doesn’t necessarily indicate a
 strong association!
 
 Therefore, when looking for rules it is better to just look at the lift
@@ -524,15 +521,15 @@ side).
 
 However, some of the 458 rules with confidence above 75% include:
 
-Citrus fruit, fruit/vegetable juice, grapes --\> tropical fruit (lift of
+Citrus fruit, fruit/vegetable juice, grapes –\> tropical fruit (lift of
 8!)
 
-Frozen meals, tropical fruit, yogurt --\> whole milk (lift of 3)
+Frozen meals, tropical fruit, yogurt –\> whole milk (lift of 3)
 
 When looking through the 75% confidence rules, my hypothesis came out
 true! As I scrolled down, the majority of the right-hand side was milk!
 and the lift was around 3 on average for those which contained milk,
-suggesting that these rules weren't very meaningful. A similar pattern
+suggesting that these rules weren’t very meaningful. A similar pattern
 was discovered for other vegetables.
 
 I included above one rule which had a lift of 8 (suggesting it is
@@ -542,7 +539,7 @@ lift of 3.
 Notice that for the first rule, the foods make sense to be bought
 together. Clearly, the person is buying things to make something fruity!
 However, for the milk rule, notice that frozen meals, tropical fruit,
-yogurt, and then milk don't really create an interesting meaningful
+yogurt, and then milk don’t really create an interesting meaningful
 rule. Rather, it seems to be a conglomerate of random things.
 
 **Lift 10+**
@@ -553,13 +550,13 @@ appear), we find 78 rules. I decided on the number ten based on insights
 from the graph, and when we look at these 78 rules together, we find
 foods/items that tend to go together! For example:
 
-Softener --\> detergent (lift: 10)
+Softener –\> detergent (lift: 10)
 
-Popcorn, soda --\> salty snack (16)
+Popcorn, soda –\> salty snack (16)
 
-Ham, bread --\> cheese (lift: 22)
+Ham, bread –\> cheese (lift: 22)
 
-Bottled beer, red/blush wine --\> liquor (35)
+Bottled beer, red/blush wine –\> liquor (35)
 
 and much more!
 
@@ -570,10 +567,10 @@ quite common!
 
 Something else I noticed is that quite a few of the rules are 2-3 items
 together and the inclusion of a 4th. A lot of times this 4th item
-doesn't have as close of an association with the other items, BUT it is
+doesn’t have as close of an association with the other items, BUT it is
 considered a necessity, such as:
 
-Butter, root vegetables, and whole milk --\> rice
+Butter, root vegetables, and whole milk –\> rice
 
 I personally do not necessarily see a connection with these foods,
 however they are considered essential household foods. Perhaps, when we
@@ -582,7 +579,7 @@ they tend to buy many necessities, etc.
 
 #### Part II
 
-By using the Gephi tutorial within the professor's github, **we get a
+By using the Gephi tutorial within the professor’s github, **we get a
 beautiful graph which can be referenced in the pdf file for Association
 Rule Mining**. Gephi discovered 6 communities within the data! Gephi
 also got their share of all the data:
@@ -617,7 +614,7 @@ arrows, we can determine that flour, baking powder, margarine, domestic
 eggs, salt, and roll products have strong associations with sugar and
 with each other (whenever their arrows point at each other). However,
 something like roll products and salt, although they are in the same
-community, don't have an association.
+community, don’t have an association.
 
 **Communities**
 
@@ -641,7 +638,7 @@ the confidence was 90%, so them being together and their own category
 makes sense
 
 Two communities I found to be broad were the purple and blue
-communities. Some things don't necessarily make sense to be a part of
+communities. Some things don’t necessarily make sense to be a part of
 the same community. For example, in purple, napkins, butter, hamburgers,
 and chocolate are all in the same group! In order to understand it
 better, you must take a look at where the arrows are going and which
@@ -667,7 +664,7 @@ In the future, I would love to dive further and understand why the blue
 and purple communities have strange associations. I would also like to
 perhaps include even more communities!
 
-### $$Image classification with neural networks$$ {#image-classification-with-neural-networks}
+### [Image classification with neural networks](https://github.com/SarahADominguez/STA380-DSSM/tree/main/ML---Image%20Classification%20With%20Neural%20Networks)
 
 **Description**
 
