@@ -450,11 +450,9 @@ Conrail, CSX, or a similar topic.
 There is still *A LOT* more that we could have analyzed, and so much
 more that can be learned from this clustering
 
-I also included the final dendrogram used, with the 66 clusters. The x
-axis contains the number of documents, and the y represents the
-distance's.
-
-![](images/clipboard-3449626577.png)
+I also included the final dendrogram used, with the 66 clusters. Can be
+found in **Reuters Corpis Ipynb.** The x axis contains the number of
+documents, and the y represents the distance's.
 
 ### $$Association rule mining$$ {#association-rule-mining}
 
@@ -467,11 +465,8 @@ interpreted a couple of subsets based off of a general graph. Part I is
 analyztion of certain rules based off of 3-D graphs comparing support,
 confidence, and lift. Part II is interpretation of Gephi graph
 
-**Graphs for picking subsets of the data:**
-
-![](images/clipboard-2640310290.png){width="496"}
-
-![](images/clipboard-139719539.png){width="521"}
+\* note: the graphs used to pick the all subsets can be found in
+**Associations Rule Mining PDF**
 
 **Support 0.05% and above**
 
@@ -587,11 +582,10 @@ they tend to buy many necessities, etc.
 
 #### Part II
 
-![](images/Prob8_Gephi_Graph_Final.png)
-
-By using the Gephi tutorial within the professor's github, we get this
-result. Gephi discovered 6 communities within the data! Gephi also got
-their share of all the data:
+By using the Gephi tutorial within the professor's github, **we get a
+beautiful graph which can be referenced in the pdf file for Association
+Rule Mining**. Gephi discovered 6 communities within the data! Gephi
+also got their share of all the data:
 
 Purple: 27% Green: 25% Blue: 25% Orange: 12.64% Dark Green: 6.9% Pink:
 2.3%
