@@ -1,11 +1,18 @@
 ---
-title: "Machine Learning prob 8"
-author: "Mauro"
+title: "ML - Association Rule Mining"
+author: "Mauro Cardona Reyes"
 date: "2024-08-15"
-output: pdf_document
+output: 
+  md_document:
+    variant: "markdown_github"
+  pdf_document:
+    latex_engine: xelatex
+editor_options:
+  markdown:
+    wrap: 72
 ---
 
-```{r setup, echo=FALSE}
+```{r Load Libraries, echo=FALSE}
 
 library(tidyverse)
 library(igraph)
@@ -17,7 +24,7 @@ library(igraph)
 
 # Top 20 items across all baskets
 
-```{r loading file echo=FALSE}
+```{r loading file, echo=FALSE}
 
 grocery_raw = read_lines("C:/Users/cardo/OneDrive/Documents/R/Intro Machine Learning/ML part 2/groceries.txt")
 
@@ -37,7 +44,7 @@ grocery_transactions <- as(grocery_baskets, "transactions")
 ```
 #Understand data
 
-```{r understanding the data}
+```{r understanding the data, eval=FALSE}
 
 summary(grocery_transactions)
 print(grocery_transactions)
@@ -49,8 +56,9 @@ inspect(grocery_transactions[1:5])
 support: 0.001
 confidence: 0.01
 Max length: 4 
+Lift: No lift yet
 
-```{r Association Rule Mining}
+```{r Association Rule Mining, echo=TRUE, fig.show="hide"}
 
 # Step 6: Association Rule Mining
 min_support <- 0.001
@@ -67,19 +75,16 @@ grocery_rules <- apriori(grocery_transactions,
 
 (Too big, 39,000 rows, but good for graph)
 
-```{r visualizing relationships}
+```{r visualizing relationships 1, eval=FALSE}
 # The rules generated
 inspect(grocery_rules) # 39,000 rules, with support .001, conf .01, too many, but good for graphs
 
-# summary for grocery rules
-#summary(grocery_rules)
-
 ```
-#Graphs for rule 1
+#Graphs for first set of rules
 
 These graphs are for visualizing as much of the data as possible, and then based of these graphs we pick a subset of the data to look at
 
-```{r graphs}
+```{r graphs, echo=FALSE}
 
 # Create a scatter plot with the x-axis starting at 0.1
 plot(grocery_rules, method = "scatterplot", measure = "support", shading = "lift", xlim = c(0, 0.1))
@@ -91,9 +96,9 @@ plot(grocery_rules, method = "scatterplot", measure = c("support", "lift"), shad
 
 
 ```
-#Look at subsets
+#Look at subsets based off graphs above
 
-```{r using graphs, lets look at some subsets}
+```{r using graphs lets look at some subsets, eval=FALSE}
 
 inspect(subset(grocery_rules, support > 0.05)) # 34 rules
 
@@ -101,9 +106,15 @@ inspect(subset(grocery_rules, support > 0.01)) #610 rules
 
 inspect(subset(grocery_rules, confidence > 0.75)) #458
 
+```
+
+## Most relevant subset:
+```{r Most relevant subset}
+
 inspect(subset(grocery_rules, lift > 10)) #78 rules
 
 ```
+
 ##Support 0.05% and above
 
 Things to understand:
@@ -165,15 +176,15 @@ I personally do not necessarily see a connection with these foods, however they 
 #First Igraph code
 (Turned out pretty ugly)
 
-```{r Prepare for igraph}
+```{r Prepare for igraph, eval=FALSE}
 
-# Step 7: Convert to Graph and Export for Gephi
+# Convert grocery_rules to Graph and Export for Gephi
 grocery_graph <- associations2igraph(grocery_rules, associationsAsNodes = FALSE)
 igraph::write_graph(grocery_graph, file='grocery_rules.graphml', format = "graphml")
 
 ```
 
-```{r, first igraph, echo=false, out.width='100%'}
+```{r, first igraph, echo=FALSE, out.width='100%'}
 knitr::include_graphics("C:/Users/cardo/OneDrive/Documents/R/Intro Machine Learning/ML part 2/First_Igraph_(ML prob 8).png")
 
 ```
@@ -188,7 +199,7 @@ max length: 4
 
 **lift:** 6
 
-```{r visualizing relationships}
+```{r visualizing relationships2, echo=TRUE, fig.show="hide"}
 
 # Step 6: Association Rule Mining
 f_grocery_rules <- apriori(grocery_transactions, 
@@ -200,7 +211,7 @@ f_grocery_rules <- subset(f_grocery_rules, lift > 6)
 ```
 #Second rules graphs
 
-```{r graphs}
+```{r graphs2, echo=FALSE}
 # Create a scatter plot with the x-axis starting at 0.1
 plot(f_grocery_rules, method = "scatterplot", measure = "support", shading = "lift", xlim = c(0, 0.1))
 
@@ -214,7 +225,7 @@ Based off of previous subsets and the analysis, these above are the graphs of ou
 
 #Second and Final Igraph
 
-```{r visualizing relationships}
+```{r visualizing relationships3, eval=FALSE}
 
 # Step 7: Convert to Graph and Export for Gephi
 f_grocery_graph <- associations2igraph(f_grocery_rules, associationsAsNodes = FALSE)
