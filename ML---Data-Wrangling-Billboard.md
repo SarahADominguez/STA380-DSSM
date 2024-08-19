@@ -117,14 +117,6 @@ cat("Table: Top 10 most popular songs since 1958, ranked by the total number of 
 
     ## Table: Top 10 most popular songs since 1958, ranked by the total number of weeks they appeared on the Billboard Top 100.
 
-``` r
-####Might need to come back and check for the caption ^^^^^^
-#########
-########
-##########
-########
-```
-
 **Part B**: Is the “musical diversity” of the Billboard Top 100 changing
 over time? Let’s find out. We’ll measure the musical diversity of given
 year as *the number of unique songs that appeared in the Billboard Top
@@ -178,13 +170,6 @@ ggplot(unique_songs_per_year, aes(x = year, y = unique_song_count)) +
     ## generated.
 
 ![](ML---Data-Wrangling-Billboard_files/figure-gfm/Part%20B:%20Musical%20Diversity-1.png)<!-- -->
-
-``` r
-##### What the heck is going on with my captions, its uncentered now
-######
-########
-#########
-```
 
 **Part C**: Let’s define a “ten-week hit” as a single song that appeared
 on the Billboard Top 100 for at least ten weeks. There are 19 artists in
