@@ -1,3 +1,9 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # README
 
 ## Table of Contents
@@ -58,7 +64,7 @@ explore our repository for a thorough analysis and valuable insights.
 
 ## 3. Overview
 
-### \[Probability practice\]
+### $$Probability practice$$ {#probability-practice}
 
 **Description:** - In our analysis, we utilized the Rule of Total
 Probability to determine the proportion of truthful respondents
@@ -71,7 +77,7 @@ sensitivity and the prevalence of the disease (Part B).
 clickers answered yes is 71.43%. The probability of someone having
 disease given that they tested positive is 19.89%
 
-### \[Wrangling the Billboard Top 100\]
+### $$Wrangling the Billboard Top 100$$ {#wrangling-the-billboard-top-100}
 
 **Description**
 
@@ -102,7 +108,7 @@ Artists with Ten-Week Hits: A bar plot showcased artists like Elton John
 and Madonna who have had notable ten-week hits, with Elton John topping
 the list.
 
-### \[Visual story telling part 1: green buildings\]
+### $$Visual story telling part 1: green buildings$$ {#visual-story-telling-part-1-green-buildings}
 
 **Description**
 
@@ -116,15 +122,17 @@ green-certified and non-green buildings.
 
 **Results**
 
--   **Median Rent for Green Buildings:** $27.60 per square foot per year
-
--   **Median Rent for Non-Green Buildings:** $25.00 per square foot per
+-   **Median Rent for Green Buildings:** \$27.60 per square foot per
     year
 
--   **Rent Premium for Green Buildings:** $2.60 per square foot per year
+-   **Median Rent for Non-Green Buildings:** \$25.00 per square foot per
+    year
+
+-   **Rent Premium for Green Buildings:** \$2.60 per square foot per
+    year
 
 The results indicate that green-certified buildings command a rent
-premium of $2.60 per square foot per year compared to non-green
+premium of \$2.60 per square foot per year compared to non-green
 buildings.
 
 **Conclusion**
@@ -135,7 +143,7 @@ are willing to pay more for properties with green certifications, likely
 due to benefits such as energy efficiency, sustainability, and possibly
 better work environments.
 
-### \[Visual story telling part 2: Capital Metro data\]
+### $$Visual story telling part 2: Capital Metro data$$ {#visual-story-telling-part-2-capital-metro-data}
 
 **Description**
 
@@ -184,7 +192,7 @@ other. On weekends, ridership is lower and more stable throughout the
 day. This graph can inform bus scheduling to better match passenger
 demand, especially during peak hours on weekdays.
 
-### \[Clustering and dimensionality reduction\]
+### $$Clustering and dimensionality reduction$$ {#clustering-and-dimensionality-reduction}
 
 **Description**
 
@@ -243,7 +251,7 @@ The findings suggest that chemical properties are strong indicators of
 wine color, with more nuanced patterns emerging for quality, reflecting
 its subjective nature
 
-### \[Market segmentation\]
+### $$Market segmentation$$ {#market-segmentation}
 
 **Description**
 
@@ -290,159 +298,382 @@ NutrientH20 to tailor its marketing strategies, enabling the brand to
 better connect with its diverse audience and drive growth in specific
 demographics.
 
-### \[The Reuters Corpus\]
+### $$The Reuters Corpus$$ {#the-reuters-corpus}
 
 **Description:**
 
-For the Reuters C50 text corpus, we used the LDA (Latent Dirichlet
-Allocation) model to identify key themes in the text. Based on these
-themes, we created a mini search engine that suggests authors based on
-topics entered by the user, making it easier to explore the dataset.
+For the Reuters C50 text corpus, we used TF-IDF vectorization and
+hierarchical clustering to analyze a plethora of documents from
+different authors
 
-**Part 1: Initial Clustering Analysis:**
+**Write Up**
 
-The first part of the analysis focused on clustering the authors based
-on their writing, without using TF-IDF scores. Several authors, such as
-Heather Scoffield, Robin Sidel, Roger Fillion, Patricia Commins, Simon
-Cowell, and Michael Conner, each had clusters unique to them, suggesting
-either a distinct writing style or a focus on unique topics.
-Interestingly, no author appeared in just one cluster, indicating some
-diversity in their writing or topics. Some authors, like Mark Bendeich,
-Brad Dorfman, and Scott Hillis, appeared in numerous clusters, with Mark
-Bendeich in 11 clusters and the latter two in 12, suggesting versatility
-in their writing.
+**Question:**
 
-**Part 2: Clustering with TF-IDF Scores:**
+Can the documents in the Reuters data be clustered together in a
+*meaningful* way based on their content? And what can we learn about the
+documents?
 
-In the second part, TF-IDF scores were used to identify common themes
-within each cluster:
+**Approach:**
 
-**Cluster 1:** Focused on topics related to the British handover of Hong
-Kong to China, with key words like “China,” “British,” and “handover.”
+First, we obviously load in the data and we use two variables per
+dataset, as we need to store the text itself and the labels (authors) of
+that data.
 
-**Cluster 2:** Appeared to cluster documents related to Chinese law and
-legislature, with words like “legislature,” “democracy,” and
-“committee.”
+Next, we preprocess the data, in a sense making the data usable. First,
+we create a for loop which will run through each text. This for loop
+will tokenize the text (seperate the text by words, puncutation, etc).
+Then, we remove any stop words or puncuation, and finally stem the words
+(convert running to run, etc).
 
-**Cluster 7:** Centered around the UAW strike against General Motors,
-with key terms like “gm,” “workers,” and “strike.” Cluster 9: Focused on
-banking in Scotland, including words like “Scotland,” “bank,” and
-“analyst.”
+Now we take each word, and convert it to TF-IDF structure. Words that
+are common among a couple of documents but rare across the entire corpus
+will have high TF-IDF scores. Having a numerical value to compare our
+words against each other is necessary for clustering, and TF-IDF gives
+more insight than just the overall counts
 
-**Cluster 38:** Related to Colombian drug cartels and extraditions, with
-terms like “drugs,” “Colombia,” and “extradition.” Some common words,
-such as “China,” “market(s),” and “banking,” appeared across multiple
-clusters, indicating recurring themes throughout the corpus.
+I then created a dendrogram, which visualizes all the clusters.
+Originally, I had set it to go as deep as possible, and then messed
+around and adjusted the p value to see where/how many clusters I wanted
+to stop at. This diagram is a great way to visualize how the data is
+split, and how many documents are within each cluster
 
-**Author-Specific Clusters:**
+However, although I might have wanted 7 clusters, or 9, etc, When I
+moved on to the fcluster part of the code (the code which produces the
+cluster) and messed around with the t value (how to cut the dendrogram
+for each cluster) I ran into an issue. When I started out with a small
+amount of clusters, say at t=6 I could create 8 clusters, BUT one
+cluster contained 1600 documents! This was way more compared to the 100
+or so each other contained, which told me we didn't have enough clusters
+to accurately classify the data. Finally, I got to a t=3 value, which
+produced 66 well distributed clusters (biggest was only 240)
+
+I then got the number of documents within each cluster, got the authors
+which resided in each cluster, clusters per author, and finally got the
+10 most common words per cluster.
+
+**Results:**
+
+**Part 1**
+
+*Part 1 of analysis simply looks at which authors appeared in what
+clusters.*
+
+Something we can do, is look at the authors found within each cluster.
+Some authors had clusters all to themselves! Heather Scoffield, Robin
+Sidel, Roger Fillion (x2!), Patricia Commins, Simon Cowell, and Michael
+Conner all had clusters to themselves! This indicates that perhaps these
+authors have a unique writing style OR (what I think is more likely)
+they discussed a unique topic. Later we can look at the top ten most
+common words.
+
+Although these authors did have their own clusters, no author appeared
+in a cluster only once which is something intresting to consider.
+
+I checked Matthew Bunce, as he appeared in the least amount of clusters,
+only two. Each cluster was intresting. He appeared in cluster 50, which
+is second largest cluster with 189 documents and in another cluster
+which contained 5 other authors and 50 documents. Cluster 51 and 50 (two
+largest clusters) I consider to be clusters that are more general, and
+capture documents of which there really wasn't a big pattern too, so for
+Matthew Bunce, it may be best to only look at his other cluster, cluster
+62.
+
+Some authors appeared across *many* clusters, the most top 3 being Mark
+Bendeich at 11, and both Brad Dorfman and Scott Hillis at 12. This
+indicates that perhaps these authors have a variety of writing styles or
+topics.
+
+**Part 2** *Looking at word counts in clusters*
+
+This part of the results is fascinating. By looking at each cluster
+individually, we can find common themes within them, as well as by using
+command f, find common themes across a variety of clusters.
+
+**Cluster 1:** Included words like China, British, and the word
+handover. The inclusion of the word 'handover' to me sounds like it may
+have to do with the British handover of Hong Kong to China after WW2!
+
+**Cluster 2:** Also includes, China, however this time it includes words
+like legislature, democracy, committie, and provisonal. This to me seems
+like it clusters documents regarding Chinese law and legislature.
+
+**Cluster 7:** Included words like 'gm' (General Motors), workers, UAW,
+Strike, Plants, and Union. This clearly indicates that cluster 7
+includes documents about the UAW strike against General Motors.
+
+**Cluster 9:** Included words like Scotland, bank, analyst, banking,
+pence, customers, percent, etc. This indicates it may have to do with
+the banking system in Scotland, or something like that
+
+**Cluster 38:** Included words like drugs, Colombia, police,
+extradition, government, states, and united. This probably has to do
+with Colombian drug cartels, and extraditions possibly to the states
+
+With Command F, we find that some words are common throughout clusters,
+like China, market(s), banking, and said. This gives us perhaps an idea
+of common themes throughout parts of the corpus. Said is something I may
+look to exclude in the future, as it is included in most of the clusters
+(however, it does give information. It tells me that the authors are
+observing other entities).
+
+Finally, I will look at clusters with just one authors, to see what I
+find.
 
 **Roger Fillion:**
 
--   **Cluster 31:** Focused on communications, particularly related to
-    the FCC and phone carriers.
+Cluster 31 - Top words: fcc, phone, local, carriers, distance, rules,
+companies, etc. FCC stands for federal comunications Commision, which
+regulates interstate and international communications. Once this is
+understood, the other words begin to make sense
 
--   **Cluster 35:** Related to TV ratings and industry discussions.
+Cluster 35 - Top words: tv, ratings, industry, shows, children, content,
+parents, valneti, etc. This seems to be discussions regarding tv
+ratings, and the industry or genre within the industries.
+
+Super interesting that by looking at the content within these clusters
+by the same author, we get absolutely different results which tell
+different stories. This suggests our clustering did some great work!
 
 **Robin Sidel:**
 
--   **Cluster 28:** Focused on business dealings involving U.S. rail
-    companies Conrail and CSX.
+Cluster 28 - Top words: conrail, csx, norfolk, southern, offer,
+shareholders, bid, stock, cash, etc. Conrail and CSX are rail companies
+in the United States, which give us some context about what the
+documents may be about. Shareholders, bid, stock, and cash give us
+indications that something business related is happening between the two
+companies or something like that.
 
-The analysis demonstrated the effectiveness of the clustering, as
-clusters from the same author revealed different topics, indicating that
-the clustering method successfully captured distinct themes within the
-corpus. The final dendrogram included 66 clusters, showcasing the
-document distribution and distances between them, providing a
-comprehensive overview of the clustering results.
+When using command F, I could not find any other clusters who contained
+Conrail, CSX, or a similar topic.
 
-***Conclusion***
+There is still *A LOT* more that we could have analyzed, and so much
+more that can be learned from this clustering
 
-The analysis confirmed that clustering documents using TF-IDF can
-meaningfully organize them, revealing authors’ writing styles, genres,
-and content similarities. This method can be applied to a broader set of
-documents to uncover trends in markets, international affairs, and more,
-providing valuable insights for investors, CEOs, and other stakeholders.
-The clustering tool created is a powerful way to organize and interpret
-data, aiding in informed decision-making.
+I also included the final dendrogram used, with the 66 clusters. The x
+axis contains the number of documents, and the y represents the
+distance's.
 
-### \[Association rule mining\]
+![](images/clipboard-3449626577.png)
+
+### $$Association rule mining$$ {#association-rule-mining}
 
 **Description**
 
-An analysis of a groceries dataset was performed using Association Rule
-Mining to identify patterns in purchasing behaviors.
+An analysis of a groceries data set was performed using Association Rule
+Mining to identify patterns in purchasing behaviors. Then, patterns and
+associations discovered where then transformed into Gephi. First, we
+interpreted a couple of subsets based off of a general graph. Part I is
+analyztion of certain rules based off of 3-D graphs comparing support,
+confidence, and lift. Part II is interpretation of Gephi graph
 
-**Results**
+**Graphs for picking subsets of the data:**
 
-The Gephi tutorial was utilized to analyze the data, resulting in the
-identification of six distinct communities within the network. These
-communities represent different groups of items that are frequently
-bought together, potentially indicating common ingredients, food styles,
-or other necessities.
+![](images/clipboard-2640310290.png){width="496"}
 
-**Community Breakdown:**
+![](images/clipboard-139719539.png){width="521"}
 
-Purple: 27% of the data
+**Support 0.05% and above**
 
-Green: 25% of the data
+A big difference between this data set and the playlist data set is how
+frequently items appear. In this data set, the support at 0.05% only
+draws 34 rules (appears in 5% of baskets or more). Of these rules, 28 of
+them are just an item by itself! This gives us insight into the grocery
+shopping of individuals and suggests people have very different grocery
+shopping lists. Besides these 28 items, there is a lot of diversity in
+what people buy.
 
-Blue: 25% of the data
+These 28 items included: canned beef, coffee, beef, napkins, pork,
+newspapers, domestic eggs, butter, fruit/vegetable juice, pastry,
+bottled water, soda, yogurt, rolls/buns, other vegetables, milk, etc.
 
-Orange: 12.64% of the data
+These are very common food items, so it makes sense that they appear
+constantly throughout the data. Milk has the highest support of 25%,
+which makes sense as our graph earlier had milk as the most common food
+item.
 
-Dark Green: 6.9% of the data
+The other rules included:
 
-Pink: 2.3% of the data
+yogurt --\> whole milk
 
-### **Insights:**
+other vegetables --\> whole milk
 
-**Association Network:**
+rolls/buns --\> whole milk
 
--The graph represents an association network where items that are bought
-together are connected. The size of the nodes indicates the strength and
-frequency of associations.
+and the opposites of these as well! Notice that these are the top 3
+items that appeared across all baskets, and their lifts stay between 1.2
+to 1.5. This suggests that these associations are not at all powerful,
+and their appearance here is more than likely because they appear
+throughout all baskets, not because they have associations with each
+other.
 
--Surprisingly, some frequently purchased items like whole milk appear as
-smaller nodes, suggesting that frequency alone does not determine strong
-associations.
+The difference between the grocery data and playlist data is why in the
+first graph above, I choose a support of 0.001 and confidence of 0.01. I
+wanted to capture many rules (graph captured 39,000 rules!), so I could
+find interesting patterns and then look at the subsets.
 
-**Notable Nodes:**
+**Confidence 75% and Above**
 
--Larger nodes like root vegetables, butter, white bread, and tropical
-fruit have many strong associations with other products.
+When looking at confidence of 75% and above, we find there are 458
+rules. This is interesting, as it represents the probability of the
+right-hand side showing up based on what is in the left-hand side.
+However, we may run into an issue. If something is very common like
+milk, there is a chance that most products will have a high confidence
+when milk is on the right side! This doesn't necessarily indicate a
+strong association!
 
--Smaller nodes are less connected and have weaker associations, often
-located further from the core of their community.
+Therefore, when looking for rules it is better to just look at the lift
+(which tells us how much *more likely* an item is to be bought if it
+appears with another and accounts for the frequency of the right-hand
+side).
 
-**Community Examples:**
+However, some of the 458 rules with confidence above 75% include:
 
-**Green (Root Vegetables):** Includes strong associations with oil,
-citrus fruit, herbs, and rice.
+Citrus fruit, fruit/vegetable juice, grapes --\> tropical fruit (lift of
+8!)
 
-**Dark Green (Sugar):** Strong associations with flour, baking powder,
-margarine, domestic eggs, and salt, though not all items within the
-community are directly associated.
+Frozen meals, tropical fruit, yogurt --\> whole milk (lift of 3)
 
-**Orange:** Contains related items such as whipped cream, yogurt, curd,
-and sliced cheese, with smaller, more specific associations like deserts
-and coffee.
+When looking through the 75% confidence rules, my hypothesis came out
+true! As I scrolled down, the majority of the right-hand side was milk!
+and the lift was around 3 on average for those which contained milk,
+suggesting that these rules weren't very meaningful. A similar pattern
+was discovered for other vegetables.
 
-**Pink:** Represents a very specific community with only softener and
-detergent, having high confidence and lift values, justifying their
-close association.
+I included above one rule which had a lift of 8 (suggesting it is
+genuinely strong!) and one rule with milk on the right-hand side and a
+lift of 3.
 
-**Purple & Blue:** These communities are broader and contain multiple
-sub-communities with less obvious connections, such as hamburgers with
-napkins in purple or popcorn with salty snacks and soda in blue.
+Notice that for the first rule, the foods make sense to be bought
+together. Clearly, the person is buying things to make something fruity!
+However, for the milk rule, notice that frozen meals, tropical fruit,
+yogurt, and then milk don't really create an interesting meaningful
+rule. Rather, it seems to be a conglomerate of random things.
 
-**Observations & Future Exploration:**
+**Lift 10+**
 
-The purple and blue communities have some unusual associations that
-aren’t immediately obvious. There is an interest in further exploring
-why certain items are grouped together and possibly refining the
-analysis to identify even more communities.
+When looking at a lift above 10 (i.e., if item on left-hand side
+appears, the item on the right-hand side is 10 times as likely to
+appear), we find 78 rules. I decided on the number ten based on insights
+from the graph, and when we look at these 78 rules together, we find
+foods/items that tend to go together! For example:
 
-### \[Image classification with neural networks\]
+Softener --\> detergent (lift: 10)
+
+Popcorn, soda --\> salty snack (16)
+
+Ham, bread --\> cheese (lift: 22)
+
+Bottled beer, red/blush wine --\> liquor (35)
+
+and much more!
+
+These rules make *way* more sense than just looking at the confidence.
+It has found associations between cleaning products, alcohol, popcorn,
+and sandwich purchases that make perfect sense and by intuition are
+quite common!
+
+Something else I noticed is that quite a few of the rules are 2-3 items
+together and the inclusion of a 4th. A lot of times this 4th item
+doesn't have as close of an association with the other items, BUT it is
+considered a necessity, such as:
+
+Butter, root vegetables, and whole milk --\> rice
+
+I personally do not necessarily see a connection with these foods,
+however they are considered essential household foods. Perhaps, when we
+get rules like these, it suggests that when people buy a lot of food,
+they tend to buy many necessities, etc.
+
+#### Part II
+
+![](images/Prob8_Gephi_Graph_Final.png)
+
+By using the Gephi tutorial within the professor's github, we get this
+result. Gephi discovered 6 communities within the data! Gephi also got
+their share of all the data:
+
+Purple: 27% Green: 25% Blue: 25% Orange: 12.64% Dark Green: 6.9% Pink:
+2.3%
+
+The graph is an association network, so in short terms it represents
+items that are bought together. They may indicate common ingredients,
+styles of food, necessities, etc. Something which worried me at first,
+was how small the whole milk node is. it is in the purple group, below
+the butter. I was concerned, as it was the most frequent item but was
+small in the results. However, I believe this is due to what was
+discussed earlier: frequency **does not** necessarily indicate strong
+association.
+
+**Individual Nodes**
+
+Look at the large nodes, like root vegetables, butter, white break,
+tropical fruit, etc. These are nodes that have lots of strong
+associations for many other products. As the nodes get smaller and
+further away, these have less associations and the associations are
+weaker.
+
+Root vegetables for example, are bought often with oil, citrus fruit,
+fruit/vegetable juice, herbs, rice, other vegetables, etc. This can be
+determined by looking at the arrows and which directions they point in
+(although it is a little tough to do)
+
+Another node or community we can look at, is sugar. Based off of the
+arrows, we can determine that flour, baking powder, margarine, domestic
+eggs, salt, and roll products have strong associations with sugar and
+with each other (whenever their arrows point at each other). However,
+something like roll products and salt, although they are in the same
+community, don't have an association.
+
+**Communities**
+
+We have already covered two communities, green (root vegetables) and
+dark green (sugar). The items within each group do seem to corespond to
+each other, and the identity of these communities makes sense.
+
+The orange community also seems to make sense. Whipped/sour cream,
+yogurt, curd, cream cheese, sliced cheese do make a lot of sense
+together and are relatable! On the outskirts, we see smaller
+associations which do still make sense, just not as much and only with
+specific other items. For example, deserts, cereal, meat spread, coffee,
+etc. Notice how these only have a couple arrows pointing at them. Coffee
+only has one! What this has taught me is that the further away/smaller a
+point is from the middle of the group, the less relatable and less often
+it is bought with those things
+
+The community which makes the most sense and is especially specific is
+pink, which only contains softner and detergent. The lift was 10, and
+the confidence was 90%, so them being together and their own category
+makes sense
+
+Two communities I found to be broad were the purple and blue
+communities. Some things don't necessarily make sense to be a part of
+the same community. For example, in purple, napkins, butter, hamburgers,
+and chocolate are all in the same group! In order to understand it
+better, you must take a look at where the arrows are going and which
+arrow is touching which. If you look closely, napkins and hamburgers do
+**NOT** have a lie drawn towards each other, even though they are
+particularly large nodes in the same community. Rather, they connect
+with nodes within the same community, and have sort of their own subsets
+of associations. For example, hamburgers has sauces and instant food
+products nearby, with suaces only connected to hamburgers.
+
+You can also find another sub community in purple, cat food and pet care
+products.
+
+The blue community also has a lot of sub communities, for example:
+
+Popcorn, salty snacks, soda Bread, processed cheese, ham Bottled beer,
+liquor, red/blush wine
+
+My personal favorite, there are connections between soda and liquor!
+Could this be jack and coke?
+
+In the future, I would love to dive further and understand why the blue
+and purple communities have strange associations. I would also like to
+perhaps include even more communities!
+
+### $$Image classification with neural networks$$ {#image-classification-with-neural-networks}
 
 **Description**
 
